@@ -82,3 +82,38 @@ WHERE Citta='Pisa'
 FROM SALE
 GROUP BY Citta
 
+16)SELECT s.Citta, count(*)
+FROM Sale s
+Where s.Posti>60
+GROUP BY s.Citta
+
+17)SELECT  f.Regista, count(*)
+FROM Film f
+WHERE f.AnnoProduzione>1990
+GROUP BY f.Regista
+
+18)SELECT sum(p.Incasso) as Totale_incasso
+FROM Film f, Proiezioni p
+WHERE p.CodFilm=f.CodFilm
+GROUP BY f.Regista
+
+19)SELECT f.Titolo, count(*) as NumeroProiezioni, sum(p.Incasso) as Totale_incasso
+FROM Film f, Proiezioni p, Sale s
+WHERE f.CodFilm=p.CodFilm
+AND s.CodSala=p.CodSala
+AND s.Citta='Pisa'
+AND f.Regista='Spielberg'
+GROUP BY f.CodFilm, f.Titolo
+
+20)SELECT f.Regista, a.Nome, count(*) as NumeroFilm
+FORM Film f, Attori a, Recita r
+WHERE f.CodFilm=f.CodFilm
+AND r.CodAttore=a.CodAttore
+GROUP BY f.Regista, a.CodAttore, a.Nome
+
+21)SELECT f.Regista, f.Titolo
+FROM Film f, Recita r
+WHERE r.CodFilm=f.CodFilm
+GROUP BY f.CodFilm, f.Regista, f.Titolo
+HAVING count(*)<6
+
